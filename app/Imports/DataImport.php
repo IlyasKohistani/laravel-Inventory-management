@@ -2,6 +2,8 @@
 
 namespace App\Imports;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Illuminate\Support\Str;
@@ -50,9 +52,9 @@ class DataImport implements  OnEachRow, WithHeadingRow, WithValidation, WithCalc
                 fclose($zipReader);
                 $extension = $drawing->getExtension();
             }
-        $myFileName = Str::uuid()->toString() . '.' . $extension;
-        file_put_contents('images/stocks/' . $myFileName, $imageContents);
-        dd($drawing);
+        $myFileName = Str::uuid()->toString() . Carbon::now()->timestamp . '.' . $extension;
+        Storage::put('products/'.$myFileName, $imageContents);
+        return $myFileName;
     }
 
     public function rules(): array
