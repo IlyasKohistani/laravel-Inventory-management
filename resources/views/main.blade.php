@@ -6,19 +6,23 @@
     @include('partials._css')
 </head>
 
-<body id="page-top">
-    
+<body id="page-top" class="position-relative">
     @include('components.loader')
+    <div id="app">
+        <div id="main" class="layout-horizontal">
 
-    @include('partials._nav')
+            @include('components.loader')
+            @include('partials._nav')
 
-    <div>
-        @yield('content')
+            <div class="content-wrapper container">
+                @yield('content')
+            </div>
+
+            @include('partials._footer')
+        </div>
     </div>
 
-    @include('partials._footer')
     @include('partials._script')
-
     @yield('script')
 </body>
 

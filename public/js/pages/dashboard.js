@@ -72,6 +72,9 @@ var optionsEurope = {
 		axisBorder: {
 			show:false
 		},
+		tooltip: {
+			enabled: false
+		},
 		axisTicks: {
 			show:false
 		},
