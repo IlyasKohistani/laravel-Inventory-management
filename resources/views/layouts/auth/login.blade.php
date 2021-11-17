@@ -23,11 +23,12 @@
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
-                   <div id="error-box">@include('errors.validation-error')</div> 
+                    <div id="error-box">@include('errors.validation-error')</div>
                     <form action="{{ route('authenticate') }}" method="POST">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="email" class="form-control form-control-xl" value="{{ old('email') }}" name="email" placeholder="Email">
+                            <input type="email" class="form-control form-control-xl" value="{{ old('email') }}"
+                                name="email" placeholder="Email">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
@@ -40,8 +41,8 @@
                             </div>
                         </div>
                         <div class="form-check form-check-lg d-flex align-items-end">
-                            <input class="form-check-input me-2" type="checkbox" name="remember_me"  value="1" @if(old('remember_me'))checked @endif
-                                id="flexCheckDefault">
+                            <input class="form-check-input me-2" type="checkbox" name="remember_me" value="1"
+                                @if (old('remember_me'))checked @endif id="flexCheckDefault">
                             <label class="form-check-label text-gray-600" for="flexCheckDefault">
                                 Keep me logged in
                             </label>

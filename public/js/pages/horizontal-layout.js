@@ -19,7 +19,7 @@ function checkWindowSize() {
 
 function listener() {
     let menuItems = document.querySelectorAll('.menu-item.has-sub')
-    console.log(menuItems)
+    // console.log(menuItems)
     menuItems.forEach(menuItem => {
         menuItem.querySelector('.menu-link').addEventListener('click', (e) => {
             e.preventDefault()

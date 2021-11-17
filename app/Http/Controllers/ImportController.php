@@ -43,13 +43,4 @@ class ImportController extends Controller
             return Response(['message' => $message], 422);
         }
     }
-
-    public function Images(Request $request)
-    {
-        $path = 'images/6e87380a-8436-4f38-9bc7-2917a5ef5553.png';
-        if (Storage::exists($path)) {
-            return Storage::get($path);
-        }
-        return $path;
-    }
 }

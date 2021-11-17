@@ -34,7 +34,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard');
         }
         
-        return back()->withInput()->with('message', 'Login Failed');
+        return back()->withInput()->withErrors('Your credentials are not valid/You have been blocked from the system.');
     }
 
 

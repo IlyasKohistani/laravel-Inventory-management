@@ -5,13 +5,21 @@
 <script src="{{ asset('vendors/apexcharts/apexcharts.js') }}"></script>
 <script src="{{ asset('js/pages/horizontal-layout.js') }}"></script>
 <script src="{{ asset('vendors/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
 
 
 <!-- global app configuration object -->
 <script>
     var config = {
-        routes:{
-            import:'{{ route("import.import") }}'
+        routes: {
+            import: "{{ route('import.import') }}",
+            product: {
+                status:  "{{ route('product.status', ['product'=>'ID']) }}"
+            },
+            transactions: {
+                request:  "{{ route('request-transaction.index') }}",
+                grant:  "{{ route('grant-transaction.index') }}"
+            }
         },
         loader: {
             hide: function() {
@@ -54,6 +62,20 @@
                     showConfirmButton: false,
                     timer: delay
                 })
+            },
+            confirm: function(callback, data, message = 'Are you sure?', delay = 1500) {
+                Swal.fire({
+                    title: message,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        callback && data && callback(data);
+                    }
+                })
             }
 
         },
@@ -71,5 +93,22 @@
     };
 
     @if (\Session::has('popupMessage'))
+        @switch(\Session::get('popupMessage')['status'])
+            @case('success')
+                config.messages.success("{{ \Session::get('popupMessage')['message'] }}")
+            @break
+            @case('error')
+                config.messages.error("{{ \Session::get('popupMessage')['message'] }}")
+            @break
+            @default
+                config.messages.info("{{ \Session::get('popupMessage')['message'] }}")
+        @endswitch
     @endif
+
+    
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    
 </script>
