@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\ProductCreateRequest;
+use App\Http\Requests\Product\ProductEditRequest;
+use App\Http\Requests\Product\ProductIndexRequest;
 use App\Http\Requests\Product\ProductStatusRequest;
 use App\Http\Requests\Product\ProductStoreRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
@@ -22,7 +25,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(ProductIndexRequest $request)
     {
         $products = Product::with('category:id,name')->select(['id', 'name', 'status', 'quantity', 'category_id', 'image']);
 
@@ -38,7 +41,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ProductCreateRequest $request)
     {
         $categories = Category::all();
         $sub_categories = SubCategory::all();
@@ -97,7 +100,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(ProductEditRequest $request, Product $product)
     {
         $product->load(['category:id', 'subCategory:id']);
         $categories = Category::all();

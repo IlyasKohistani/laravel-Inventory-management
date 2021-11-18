@@ -34,18 +34,18 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => 'Ebru',
-                'surname' => 'Amiri',
-                'username' => 'EbruAmiri',
-                'email' => 'acmodelhane@gmail.com',
-                'password' => Hash::make('12345678'),
-            ],
-            [
-                'id' => 4,
                 'name' => 'Sami',
                 'surname' => 'Hadad',
                 'username' => 'SamiHadad',
                 'email' => 's.hadad@wamdenim.com',
+                'password' => Hash::make('12345678'),
+            ],
+            [
+                'id' => 4,
+                'name' => 'Ebru',
+                'surname' => 'Amiri',
+                'username' => 'EbruAmiri',
+                'email' => 'acmodelhane@gmail.com',
                 'password' => Hash::make('12345678'),
             ],
         ];
@@ -54,12 +54,12 @@ class UserSeeder extends Seeder
             1 => [1],
             2 => [2],
             3 => [3],
-            4 => [3],
+            4 => [4],
         ];
 
         foreach ($data as $value) {
-           User::firstOrCreate($value);
-           User::find($value['id'])->roles()->attach($user_role[$value['id']]);
+            User::firstOrCreate($value);
+            User::find($value['id'])->roles()->sync($user_role[$value['id']]);
         }
     }
 }

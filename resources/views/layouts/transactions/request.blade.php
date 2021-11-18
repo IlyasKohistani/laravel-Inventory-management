@@ -26,7 +26,11 @@
                                         <th>Approved/Rejected By</th>
                                         <th>Approved/Rejected At</th>
                                         <th>Status</th>
+
+                                        @if(!empty(array_intersect(['owner','editor','approval'],
+                                        Auth::user()->user_roles)))
                                         <th></th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +42,7 @@
                                                         <img src="{{ $request->product->image_link }}"
                                                             alt="{{ $request->product->name }}">
                                                     </div>
-                                                    <a href="{{ route('product.edit', ['product' => $request->product->id]) }}"
+                                                    <a href="{{ empty(array_intersect(['owner','editor'], Auth::user()->user_roles)) ? 'javascript:void(0)' : route('product.edit', ['product' => $request->product->id]) }}"
                                                         class="d-flex flex-column text-color-inherit-all">
                                                         <span>{{ $request->product->name }}</span>
                                                         <span
@@ -83,10 +87,13 @@
                                                     @endswitch
                                                 </div>
                                             </td>
+
+                                            @if(!empty(array_intersect(['owner','editor','approval'],
+                                            Auth::user()->user_roles)))
                                             <td>
                                                 <div class="d-flex justify-content-end">
                                                     @if ($request->status == 3)
-                                                        -
+                                                        <span class="pe-2">-</span>
                                                     @else
                                                         <div class="dropdown">
                                                             <div role="button" id="dropdownMenuButton"
@@ -98,28 +105,35 @@
                                                             </div>
                                                             <div class="dropdown-menu dropdown-menu-dark"
                                                                 aria-labelledby="dropdownMenuButton">
+                                                                @if(!empty(array_intersect(['owner','approval'],
+                                                                Auth::user()->user_roles)))
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('request-transaction.status', ['request_transaction' => $request->id, 'status' => 2]) }}">Approve</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{ route('request-transaction.status', ['request_transaction' => $request->id, 'status' => 3]) }}">Complete</a>
-                                                                <a class="dropdown-item"
                                                                     href="{{ route('request-transaction.status', ['request_transaction' => $request->id, 'status' => 0]) }}">Reject</a>
-                                                                <a class="dropdown-item" href="javascript:void(0)"
-                                                                    onclick="removeProduct('{{ route('request-transaction.destroy', ['request_transaction' => $request->id]) }}')">Remove</a>
-                                                            </div>
-                                                        </div>
                                                     @endif
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                    @if(!empty(array_intersect(['owner','editor'],
+                                                    Auth::user()->user_roles)))
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('request-transaction.status', ['request_transaction' => $request->id, 'status' => 3]) }}">Complete</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)"
+                                                        onclick="removeProduct('{{ route('request-transaction.destroy', ['request_transaction' => $request->id]) }}')">Remove</a>
+                                    @endif
                         </div>
                     </div>
+                    @endif
                 </div>
+                </td>
+                @endif
+                </tr>
+                @endforeach
+                </tbody>
+                </table>
             </div>
-        </section>
+    </div>
+    </div>
+    </div>
+    </section>
     </div>
     <form action="" method="post" id="delete_form">
         @method('DELETE')

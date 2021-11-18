@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Transaction\RequestDestroyRequest;
 use App\Http\Requests\Transaction\RequestStatusRequest;
 use App\Http\Requests\Transaction\RequestStoreRequest;
 use App\Models\Product;
@@ -50,46 +51,12 @@ class RequestTransactionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RequestTransaction  $requestTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RequestTransaction $requestTransaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\RequestTransaction  $requestTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RequestTransaction $requestTransaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RequestTransaction  $requestTransaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, RequestTransaction $requestTransaction)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\RequestTransaction  $requestTransaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, RequestTransaction $requestTransaction)
+    public function destroy(RequestDestroyRequest $request, RequestTransaction $requestTransaction)
     {
         try {
             DB::beginTransaction();

@@ -163,16 +163,17 @@ var optionsCategoryLastThirtyDayTransactions = {
 
 
         //chart body for each category last 30 days chart
-        function generateChartBody(id, name, stock, fill, svg, name_length = 13) {
-            name = name.slice(0, name_length) + '...';
+        function generateChartBody(id, name, stock, fill, svg) {
             const graph_container = `<div class="row pb-2">
                             <div class="col-8">
                                 <div class="d-flex align-items-center">
-                                    <svg class="bi ${fill}" width="32" height="32" fill="blue" style="width:10px">
-                                        <use
-                                            xlink:href="${svg}" />
-                                    </svg>
-                                    <h6 class="mb-0 ms-3">${name}</h6>
+                                    <div class="d-flex align-items-center">
+										<svg class="bi ${fill}" width="32" height="32" fill="blue" style="width:10px">
+                                       	 	<use
+                                           		 xlink:href="${svg}" />
+                                    	</svg>
+									</div>
+                                    <h6 class="mb-0 ms-3 text-truncate">${name}</h6>
                                 </div>
                             </div>
                             <div class="col-4">

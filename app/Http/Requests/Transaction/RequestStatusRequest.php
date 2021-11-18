@@ -13,7 +13,7 @@ class RequestStatusRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return request()->user()->can('updateStatus', request()->request_transaction);
     }
 
     /**

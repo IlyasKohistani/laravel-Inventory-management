@@ -30,11 +30,11 @@ Route::middleware(['signed'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('product', ProductController::class)->except(['show']);
+    Route::resource('product', ProductController::class)->except(['show','destroy']);
     Route::post('product/{product}/status', [ProductController::class, 'status'])->name('product.status');
 
-    Route::resource('request-transaction', RequestTransactionController::class)->parameter('request-transaction' , 'request_transaction');
-    Route::resource('grant-transaction', GrantController::class)->parameter('grant-transaction' , 'grant');
+    Route::resource('request-transaction', RequestTransactionController::class)->parameter('request-transaction' , 'request_transaction')->only(['index','store','destroy']);
+    Route::resource('grant-transaction', GrantController::class)->parameter('grant-transaction' , 'grant')->only(['index','store','destroy']);
     Route::get('request-transaction/{request_transaction}/status', [RequestTransactionController::class, 'status'])->name('request-transaction.status');
 
     Route::get('import', [ImportController::class, 'index'])->name('import.index');

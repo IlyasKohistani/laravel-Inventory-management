@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Transaction;
 
+use App\Models\Grant;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductStatusRequest extends FormRequest
+class GrantDestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class ProductStatusRequest extends FormRequest
      */
     public function authorize()
     {
-        return Request()->user()->can('update', request()->product);
+        return request()->user()->can('delete', request()->grant);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProductStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|integer|in:1,0'
+            //
         ];
     }
 }

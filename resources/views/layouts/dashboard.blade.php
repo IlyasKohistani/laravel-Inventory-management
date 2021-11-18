@@ -28,8 +28,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold small">
-                                                {{ strlen($c_stock->name) <= 13 ? $c_stock->name : substr($c_stock->name, 0, 13) . '...' }}
+                                            <h6 class="text-muted font-semibold small text-truncate">
+                                                {{ $c_stock->name }}
                                             </h6>
                                             <h6 class="font-extrabold mb-0">{{ $c_stock->stock ?? 0 }}</h6>
                                         </div>
@@ -109,19 +109,19 @@
             </div>
             <div class="col-12 col-lg-3">
                 <!-- <div class="card">
-                                                                                                    <div class="card-body py-4 px-4">
-                                                                                                        <div class="d-flex align-items-center">
-                                                                                                            <div class="avatar bg-warning avatar-xl">
-                                                                                                                {{-- <img src="assets/images/faces/1.jpg" alt="Face 1"> --}}
-                                                                                                                <span class="avatar-content">{{ strtoupper(Auth::user()->email[0]) }}</span>
+                                                                                                            <div class="card-body py-4 px-4">
+                                                                                                                <div class="d-flex align-items-center">
+                                                                                                                    <div class="avatar bg-warning avatar-xl">
+                                                                                                                        {{-- <img src="assets/images/faces/1.jpg" alt="Face 1"> --}}
+                                                                                                                        <span class="avatar-content">{{ strtoupper(Auth::user()->email[0]) }}</span>
+                                                                                                                    </div>
+                                                                                                                    <div class="ms-3 name">
+                                                                                                                        <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                                                                                                                        <h6 class="text-muted mb-0">{{ '@' . Auth::user()->username }}</h6>
+                                                                                                                    </div>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                            <div class="ms-3 name">
-                                                                                                                <h5 class="font-bold">{{ Auth::user()->name }}</h5>
-                                                                                                                <h6 class="text-muted mb-0">{{ '@' . Auth::user()->username }}</h6>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div> -->
+                                                                                                        </div> -->
                 <div class="card">
                     <div class="card-header">
                         <h4>Last Month Transactions</h4>
@@ -133,49 +133,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Profile Visit</h4>
+                        <h4>One Month Transactions</h4>
                     </div>
                     <div class="card-body pt-2" id="categories-chart-container">
                     </div>
                 </div>
-                <!-- <div class="card">
-                                                                                                    <div class="card-header">
-                                                                                                        <h4>Recent Messages</h4>
-                                                                                                    </div>
-                                                                                                    <div class="card-content pb-4">
-                                                                                                        <div class="recent-message d-flex px-4 py-3">
-                                                                                                            <div class="avatar avatar-lg">
-                                                                                                                <img src="assets/images/faces/4.jpg">
-                                                                                                            </div>
-                                                                                                            <div class="name ms-4">
-                                                                                                                <h5 class="mb-1">Hank Schrader</h5>
-                                                                                                                <h6 class="text-muted mb-0">@johnducky</h6>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="recent-message d-flex px-4 py-3">
-                                                                                                            <div class="avatar avatar-lg">
-                                                                                                                <img src="assets/images/faces/5.jpg">
-                                                                                                            </div>
-                                                                                                            <div class="name ms-4">
-                                                                                                                <h5 class="mb-1">Dean Winchester</h5>
-                                                                                                                <h6 class="text-muted mb-0">@imdean</h6>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="recent-message d-flex px-4 py-3">
-                                                                                                            <div class="avatar avatar-lg">
-                                                                                                                <img src="assets/images/faces/1.jpg">
-                                                                                                            </div>
-                                                                                                            <div class="name ms-4">
-                                                                                                                <h5 class="mb-1">John Dodol</h5>
-                                                                                                                <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <div class="px-4">
-                                                                                                            <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                                                                                                Conversation</button>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div> -->
             </div>
         </section>
     </div>
@@ -202,11 +164,13 @@
         const categories_transactions_in_out = {!! json_encode($categories_in_out) !!}; // CATEGORIES ALL TRANSACTION DATA
         const categories_chart_container = document.getElementById(
             'categories-chart-container'); // CATEGORIES CHART CONTAINER
-        const svg_url = '{{ asset("vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill") }}';
+        const svg_url = '{{ asset('vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill') }}';
         // RENDER ALL CHARTS
         const chartLastYearMonthly = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsLastYearMonthly);
-        const chartLastMonthTransactions = new ApexCharts(document.getElementById('chart-last-month-transactions'),optionsLastMonthTransactions)
-        const chart_instances = initCategoryCharts(optionsCategoryLastThirtyDayTransactions, categories_transactions_in_out,categories_chart_container,svg_url)
+        const chartLastMonthTransactions = new ApexCharts(document.getElementById('chart-last-month-transactions'),
+            optionsLastMonthTransactions)
+        const chart_instances = initCategoryCharts(optionsCategoryLastThirtyDayTransactions, categories_transactions_in_out,
+            categories_chart_container, svg_url)
         chartLastYearMonthly.render();
         chartLastMonthTransactions.render()
         chart_instances.forEach(chart_instance => {

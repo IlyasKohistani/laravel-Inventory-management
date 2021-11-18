@@ -15,9 +15,9 @@
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex align-items-center">
                             <div class="user-name text-end me-3">
-                                <h6 class="mb-0 text-gray-600">{{ ucWords(Auth::user()->fullname) }}</h6>
-                                <p class="mb-0 text-sm text-gray-600">
-                                    {{ ucWords(implode(',', Auth::user()->user_roles)) }}</p>
+                                <h6 class="mb-0 text-gray-600 text-capitalize">{{ Auth::user()->fullname }}</h6>
+                                <p class="mb-0 text-sm text-gray-600 text-capitalize">
+                                    {{ implode(', ', Auth::user()->user_roles) }}</p>
                             </div>
                             <div class="user-img d-flex align-items-center">
                                 <div class="avatar bg-warning avatar-lg">
@@ -59,6 +59,7 @@
                     </a>
                 </li>
 
+                @if(!empty(array_intersect(['owner','editor'], Auth::user()->user_roles)))
                 <li class="menu-item  has-sub">
                     <a href="{{ route('product.index') }}" class='menu-link'>
                         <i class="bi bi-stack"></i>
@@ -78,6 +79,7 @@
                         </div>
                     </div>
                 </li>
+                @endif
 
                 <li class="menu-item  ">
                     <a href="{{ route('request-transaction.index') }}" class='menu-link'>
@@ -92,13 +94,14 @@
                         <span>Grants</span>
                     </a>
                 </li>
-
+                @if(!empty(array_intersect(['owner'], Auth::user()->user_roles)))
                 <li class="menu-item  ">
                     <a href="{{ route('import.index') }}" class='menu-link'>
                         <i class="bi bi-box-arrow-in-down"></i>
                         <span>Imports</span>
                     </a>
                 </li>
+                @endif
 
             </ul>
         </div>

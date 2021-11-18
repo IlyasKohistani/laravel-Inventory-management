@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Policies\GrantPolicy;
+use App\Policies\ProductPolicy;
+use App\Policies\RequestTransactionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +16,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Product::class => ProductPolicy::class,
+        Grant::class => GrantPolicy::class,
+        RequestTransaction::class => RequestTransactionPolicy::class,
     ];
 
     /**

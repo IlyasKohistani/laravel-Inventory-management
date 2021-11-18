@@ -13,7 +13,7 @@ class RequestStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return request()->user()->can('create', RequestTransaction::class);
     }
 
     /**

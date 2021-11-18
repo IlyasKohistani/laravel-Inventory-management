@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Imports;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductStatusRequest extends FormRequest
+class ImportIndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ProductStatusRequest extends FormRequest
      */
     public function authorize()
     {
-        return Request()->user()->can('update', request()->product);
+        return in_array('owner',request()->user()->user_roles);
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required|integer|in:1,0'
+            //
         ];
     }
 }

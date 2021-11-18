@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Imports\ImportIndexRequest;
+use App\Http\Requests\Imports\ImportRequest;
 use App\Imports\DataImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +17,7 @@ class ImportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ImportIndexRequest $request)
     {
         return view('layouts.imports');
     }
@@ -28,11 +30,8 @@ class ImportController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function ImportData(Request $request)
+    public function ImportData(ImportRequest $request)
     {
-        $request->validate([
-            'file' => 'required|file|mimes:xls,xlsx',
-        ]);
 
         try {
             Excel::import(new DataImport, request()->file('file'));

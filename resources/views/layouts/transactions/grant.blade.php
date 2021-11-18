@@ -21,10 +21,13 @@
                                 <thead>
                                     <tr>
                                         <th>Product</th>
-                                        <th>G-Quantity/Stock</th>
+                                        <th>G-Quantity</th>
                                         <th>Recipient</th>
                                         <th>Date</th>
+                                        @if(!empty(array_intersect(['owner','editor'],
+                                        Auth::user()->user_roles)))
                                         <th></th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,7 +39,7 @@
                                                         <img src="{{ $grant->product->image_link }}"
                                                             alt="{{ $grant->product->name }}">
                                                     </div>
-                                                    <a href="{{ route('product.edit', ['product' => $grant->product->id]) }}"
+                                                    <a href="{{ empty(array_intersect(['owner','editor'], Auth::user()->user_roles)) ? 'javascript:void(0)' : route('product.edit', ['product' => $grant->product->id]) }}"
                                                         class="d-flex flex-column text-color-inherit-all">
                                                         <span>{{ $grant->product->name }}</span>
                                                         <span class="small font-extrabold">{{ '#' . $grant->product->id }}</span>
@@ -44,7 +47,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                {{ $grant->quantity }}/{{ $grant->product->quantity }}
+                                                {{ $grant->quantity }}
                                             </td>
                                             <td>
                                                 {{ $grant->recipient }}
@@ -52,6 +55,9 @@
                                             <td>
                                                 {{ $grant->created_at }}
                                             </td>
+                                            
+                                        @if(!empty(array_intersect(['owner','editor'],
+                                        Auth::user()->user_roles)))
                                             <td>
                                                 <div class="d-flex justify-content-end">
                                                     <div class="dropdown">
@@ -68,6 +74,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

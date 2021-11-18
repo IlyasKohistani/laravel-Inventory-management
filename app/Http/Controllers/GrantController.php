@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Transaction\GrantDestroyRequest;
 use App\Http\Requests\Transaction\GrantStoreRequest;
 use App\Models\Grant;
 use App\Models\Product;
@@ -19,16 +20,6 @@ class GrantController extends Controller
     {
         $data = Grant::with(['product:id,quantity,name,image'])->get();
         return view('layouts.transactions.grant', ['grants' => $data]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -65,46 +56,12 @@ class GrantController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Grant  $grant
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Grant $grant)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Grant  $grant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Grant $grant)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Grant  $grant
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Grant $grant)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Grant  $grant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,Grant $grant)
+    public function destroy(GrantDestroyRequest $request,Grant $grant)
     {
         try {
             DB::beginTransaction();
