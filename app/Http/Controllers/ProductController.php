@@ -27,13 +27,25 @@ class ProductController extends Controller
      */
     public function index(ProductIndexRequest $request)
     {
+        $category_id = request()->get('category');
+        $sub_category_id = request()->get('subCategory');
+
         $products = Product::with('category:id,name')->select(['id', 'name', 'status', 'quantity', 'category_id', 'image']);
+        $category = Category::select(['id','name'])->get();
+        $subCategory = SubCategory::select(['id','name'])->get();
+
+        if($category_id)
+        $products = $products->where('category_id',$category_id);
+
+        if($sub_category_id)
+        $products = $products->where('sub_category_id',$sub_category_id);
+
 
         if ($request->status != null && ($request->status == 0 || $request->status == 1))
             $products = $products->where('status', $request->status);
 
         $products = $products->orderBy('id', 'DESC')->get();
-        return view('layouts.product.index')->with(['products' => $products]);
+        return view('layouts.product.index')->with(['products' => $products, 'categories' => $category, 'subCategories' => $subCategory]);
     }
 
     /**
