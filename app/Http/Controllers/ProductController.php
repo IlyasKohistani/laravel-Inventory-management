@@ -32,7 +32,7 @@ class ProductController extends Controller
         if ($request->status != null && ($request->status == 0 || $request->status == 1))
             $products = $products->where('status', $request->status);
 
-        $products = $products->get();
+        $products = $products->orderBy('id', 'DESC')->get();
         return view('layouts.product.index')->with(['products' => $products]);
     }
 

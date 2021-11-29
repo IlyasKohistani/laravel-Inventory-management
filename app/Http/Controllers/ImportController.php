@@ -32,13 +32,13 @@ class ImportController extends Controller
      */
     public function ImportData(ImportRequest $request)
     {
-
+        ini_set('max_execution_time', 180); 
         try {
             Excel::import(new DataImport, request()->file('file'));
             return 'ok';
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failure = $e->failures()[0];
-            $message =   'There was an error onn row number ' . $failure->row() . '.' . $failure->errors()[0];
+            $message =   'There was an error on row number ' . $failure->row() . '.' . $failure->errors()[0];
             return Response(['message' => $message], 422);
         }
     }
