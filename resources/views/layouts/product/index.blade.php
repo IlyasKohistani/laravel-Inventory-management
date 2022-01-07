@@ -17,10 +17,10 @@
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title">Product Managment</h5>
                             <div class="d-flex">
-                                <div class="me-3"><i class="bi bi-funnel text-xl" data-bs-toggle="tooltip"
+                                <div class="me-3"><i class="bi bi-funnel text-xl cursor-pointer" data-bs-toggle="tooltip"
                                         data-bs-placement="top" data-bs-original-title="Filters" id="filter-toggler"></i>
                                 </div>
-                                <div class="dropstart">
+                                <!-- <div class="dropstart">
                                     <div role="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false"><i class="bi bi-filter text-xl"
                                             data-bs-toggle="tooltip" data-bs-placement="top"
@@ -35,13 +35,13 @@
                                             href="{{ route('product.index', ['status' => 0]) }}">Inactive
                                             Products</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div id="filter-container"
-                            style=" {{ request()->get('category') || request()->get('subCategory') ? 'display:block' : 'display:none' }}">
+                            style=" {{ request()->get('category') || request()->get('status') || request()->get('subCategory') ? 'display:block' : 'display:none' }}">
                             <form class="pt-3 row">
-                                <div class="col-md-5 col-sm-12">
+                                <div class="col-md-4 col-sm-12">
                                     <select name="category" id="category" class="choices form-select">
                                         <option value="">None</option>
                                         @foreach ($categories as $category)
@@ -49,7 +49,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-5 col-sm-12">
+                                <div class="col-md-4 col-sm-12">
                                     <select name="subCategory" id="subCategory" class="choices form-select">
                                         <option value="">None</option>
                                         @foreach ($subCategories as $subCategory)
@@ -57,7 +57,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-2 col-sm-12 pt-1">
+                                <div class="col-md-3 col-sm-12">
+                                    <select name="status" id="status" class="choices form-select">
+                                        <option value="">All Products</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 col-sm-12 pt-1">
                                     <button type="submit" class="btn btn-outline-primary">Filter</button>
                                 </div>
                         </div>

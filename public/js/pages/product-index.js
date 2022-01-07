@@ -1,7 +1,8 @@
 
 // Jquery Datatable
 let jquery_datatable = $("#datatable").DataTable({
-    responsive: true
+    responsive: true,
+    "order": [[ 0, "DESC" ]]
 });
 
 
