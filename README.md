@@ -4,7 +4,7 @@
 
 A simple inventory management project built with Laravel and Maatwebsite/Excel package. It has a beautiful dashbaord with graphical data. A good example of using [Laravel Maatwebsite/excel package](https://laravel-excel.com/) imports, exports, validations and much more. You are 100% allowed to use this webpage for both personal and commercial use, but NOT to claim it as your own.
 
-![Snapshot](https://github.com/IlyasKohistani/laravel-Inventory-management/blob/main/public/img/snapshot.png)
+![Snapshot](https://github.com/IlyasKohistani/laravel-Inventory-management/blob/master/public/images/snapshot.png)
 
 ---
 
