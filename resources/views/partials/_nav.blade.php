@@ -3,8 +3,7 @@
         <div class="container">
             <div class="logo d-flex">
                 <a href="{{ route('dashboard') }}">
-                    {{-- <img src="assets/images/logo/logo.png" alt="Logo" srcset=""> --}}
-                    <h4 class="font-monospace">WAM DENIM</h4>
+                    <h4 class="font-monospace">Inventory</h4>
                 </a>
                 <a href="#" class="burger-btn ms-3 d-inline-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>

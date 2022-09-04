@@ -18,10 +18,9 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo font-monospace">
-                        <h4>WAM DENIM</h4>
+                    <div class="auth-logo font-monospace mb-4">
+                        <h3>Inventory</h3>
                     </div>
-                    <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
                     <div id="error-box">@include('errors.validation-error')</div>
                     <form action="{{ route('authenticate') }}" method="POST">
@@ -42,7 +41,7 @@
                         </div>
                         <div class="form-check form-check-lg d-flex align-items-end">
                             <input class="form-check-input me-2" type="checkbox" name="remember_me" value="1"
-                                @if (old('remember_me'))checked @endif id="flexCheckDefault">
+                                @if(old('remember_me')) checked @endif id="flexCheckDefault">
                             <label class="form-check-label text-gray-600" for="flexCheckDefault">
                                 Keep me logged in
                             </label>

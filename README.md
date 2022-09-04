@@ -1,65 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Shop Packages Maatwebsite/excel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![GitHub Stars](https://img.shields.io/github/stars/IlyasKohistani/laravel-Inventory-management.svg)](https://github.com/IlyasKohistani/laravel-Inventory-management/stargazers) [![GitHub Issues](https://img.shields.io/github/issues/IlyasKohistani/laravel-Inventory-management.svg)](https://github.com/IlyasKohistani/laravel-Inventory-management/issues) [![Current Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/IlyasKohistani/laravel-Inventory-management)
 
-## About Laravel
+A simple inventory management project built with Laravel and Maatwebsite/Excel package. It has a beautiful dashbaord with graphical data. A good example of using [Laravel Maatwebsite/excel package](https://laravel-excel.com/) imports, exports, validations and much more. You are 100% allowed to use this webpage for both personal and commercial use, but NOT to claim it as your own.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Snapshot](https://github.com/IlyasKohistani/laravel-Inventory-management/blob/main/public/img/snapshot.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Buy me a coffee
 
-## Learning Laravel
+Whether you use this project, have learned something from it, or just like it, please consider supporting it by buying me a coffee, so I can dedicate more time on open-source projects like this :)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<a href="https://www.buymeacoffee.com/ilyaskohistani" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+-   Authentication
+-   4 different static roles Owner, Viewer, Editor, Approval
+-   4 different users with roles Owner, Viewer, Editor, Approval
+-   Import from Excel file with heading and custom validation to database
+-   Export templates based on database fields with title and heading
+-   Manage products
+-   Manage products in inventory
+-   Request for products from inventory
+-   Grant requested products from inventory
+-   See latest transactions
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Setup
 
-## Contributing
+-   After you clone this repo to your desktop, go to its root directory using `cd laravel-Inventory-management` command on your cmd or terminal.
+-   run `composer install` on your cmd or terminal to install dependencies.
+-   Copy .env.example file to .env on the root folder using `copy .env.example .env` if using command prompt Windows or `cp .env.example .env` if using terminal, Ubuntu.
+-   Open your .env file and change the database name (DB_DATABASE) to whatever you have, Username (DB_USERNAME), and Password (DB_PASSWORD) fields correspond to your configuration.
+-   Run `php artisan key:generate` to generate new key.
+-   Run `php artisan migrate:fresh --seed` to publishe all our schema to the database and seed your database.
+-   Run `php artisan serve` to start project.
+-   Open http://localhost:8000/ in your browser.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Users
+You can use below users to login in the system and see different roles. Password is "12345678" for all of below users. You can manage all users, roles, categories, products data from seeder files under `database/seeders` directory and then run `php artisan db:seed` it will update your new data but you lose all previous data.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- owner@gmail.com
+- viewer@gmail.com
+- approval@gmail.com
+- editor@gmail.com
 
-## Security Vulnerabilities
+## Usage
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+After you are done with the setup open http://localhost:8000/ in your browser. You can find import and export option at top of the page in the navigation bar. You can find import and export codes in the app directory inside import and export directories. You can play with it and change anything you want. Enjoy!
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> You can check out the full license [here](https://github.com/IlyasKohistani/laravel-Inventory-management/blob/master/LICENSE)
+> This project is licensed under the terms of the **MIT** license.
