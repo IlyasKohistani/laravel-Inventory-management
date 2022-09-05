@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                 'name' => 'owner',
                 'surname' => 'Inventory',
                 'username' => 'owner',
-                'email' => 'owner@gmail.com',
+                'email' => 'owner@example.com',
                 'password' => Hash::make('12345678'),
             ],
             [
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'name' => 'Editor',
                 'surname' => 'Inventory',
                 'username' => 'editor',
-                'email' => 'editor@gmail.com',
+                'email' => 'editor@example.com',
                 'password' => Hash::make('12345678'),
             ],
             [
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'name' => 'Approval',
                 'surname' => 'Inventory',
                 'username' => 'approval',
-                'email' => 'approval@gmail.com',
+                'email' => 'approval@example.com',
                 'password' => Hash::make('12345678'),
             ],
             [
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'name' => 'viewer',
                 'surname' => 'Inventory',
                 'username' => 'viewer',
-                'email' => 'viewer@gmail.com',
+                'email' => 'viewer@example.com',
                 'password' => Hash::make('12345678'),
             ],
         ];

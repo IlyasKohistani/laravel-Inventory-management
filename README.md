@@ -47,10 +47,10 @@ Whether you use this project, have learned something from it, or just like it, p
 ## Users
 You can use below users to login in the system and see different roles. Password is "12345678" for all of below users. You can manage all users, roles, categories, products data from seeder files under `database/seeders` directory and then run `php artisan db:seed` it will update your new data but you lose all previous data.
 
-- owner@gmail.com
-- viewer@gmail.com
-- approval@gmail.com
-- editor@gmail.com
+- owner@example.com
+- viewer@example.com
+- approval@example.com
+- editor@example.com
 
 ## Usage
 
